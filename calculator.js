@@ -1,5 +1,13 @@
 let str = ''
+let show_screen = document.querySelector('.screen1') ;
+let screen_value = document.querySelector('.screen1').innerTEXT;
 // let putin = document.querySelector('.screen1').innerHTML;
+document.querySelector('.num0').addEventListener('click', function(){
+  document.querySelector('.screen1').innerHTML = 0;
+
+  str = str + (0)
+  document.querySelector('.screen1').innerHTML = str;
+} )
 
 for (let i = 0; i < 9; i++) {
   document.querySelectorAll('.num')[i].addEventListener('click', function() {
@@ -22,19 +30,19 @@ function logic() {
 document.querySelector('.clear').addEventListener('click', function (){
 
   str = '';
-  document.querySelector('.screen1').innerHTML = str;
+  show_screen.innerHTML = str;
 
 })
 
 document.querySelector('.delete').addEventListener('click', function (){
   str = str.slice(0, -1);
-  document.querySelector('.screen1').innerHTML = str;
+  show_screen.innerHTML = str;
 })
 
 document.querySelector('.dot').addEventListener('click', function (){
   if (isNaN(logic()) == false){
     str = str + '.';
-    document.querySelector('.screen1').innerHTML = str;
+    show_screen.innerHTML = str;
   }
 })
 
@@ -42,36 +50,39 @@ document.querySelector('.dot').addEventListener('click', function (){
 document.querySelector('.per').addEventListener('click', function (){
   if (isNaN(logic()) == false){
   str = str + '%';
-  document.querySelector('.screen1').innerHTML = str;
+  show_screen.innerHTML = str;
 }})
 
 document.querySelector('.divide').addEventListener('click', function (){
   if (isNaN(logic()) == false){
   str = str + '/';
-  document.querySelector('.screen1').innerHTML = str;
+  show_screen.innerHTML = str;
 }})
 
 document.querySelector('.multiple').addEventListener('click', function (){
   if (isNaN(logic()) == false){
   str = str + '*';
-  document.querySelector('.screen1').innerHTML = str;
+  show_screen.innerHTML = str;
 }})
 
 document.querySelector('.plus').addEventListener('click', function (){
   if (isNaN(logic()) == false){
   str = str + '+';
-  document.querySelector('.screen1').innerHTML = str;
+  show_screen.innerHTML = str;
 }})
 
 document.querySelector('.minus').addEventListener('click', function (){
   if (isNaN(logic()) == false){
   str = str + '-';
-  document.querySelector('.screen1').innerHTML = str;
+  show_screen.innerHTML = str;
 }})
 
-document.querySelector('.equal').addEventListener('click', function (){
-  if (isNaN(logic()) == false){
-  str = str + '=';
-  document.querySelector('.screen1').innerHTML = str;
-}})
+// document.querySelector('.equal').addEventListener('click', function (){
+//   if (isNaN(logic()) == false){
+//   str = str + '=';
+//   document.querySelector('.screen1').innerHTML = str;
+// }})
 
+console.log(document.querySelector('.screen1').value);
+
+// document.querySelector('.equal').addEventListener('click', evaluate)
