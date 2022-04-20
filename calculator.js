@@ -1,88 +1,82 @@
-let str = ''
-let show_screen = document.querySelector('.screen1') ;
-let screen_value = document.querySelector('.screen1').innerTEXT;
-// let putin = document.querySelector('.screen1').innerHTML;
-document.querySelector('.num0').addEventListener('click', function(){
-  document.querySelector('.screen1').innerHTML = 0;
+let numOne = '';
+let operator = '';
+let numTwo = '';
 
-  str = str + (0)
-  document.querySelector('.screen1').innerHTML = str;
-} )
+const $operator = document.querySelector('#operator');
+const $result = document.querySelector('#result');
 
-for (let i = 0; i < 9; i++) {
-  document.querySelectorAll('.num')[i].addEventListener('click', function() {
-    document.querySelector('.screen1').innerHTML = i + 1;
-    
-    str = str + (i+1)
-    document.querySelector('.screen1').innerHTML = str;
-    
-  });
-}
+const onClickNumber = (event) => {
+    if (!operator) {
+      numOne += event.target.textContent;
+      $result.value += event.target.textContent;
+      return;
+    } 
 
+    if (!numTwo) {
+      $result.value = '';
+    }
+    numTwo += event.target.textContent;
+    $result.value += event.target.textContent;
+  };
 
-function logic() {
-  let last_word = str.charAt(str.length-1);
-  return parseInt(last_word);
-}
+document.querySelector('.num0').addEventListener('click', onClickNumber);
+document.querySelector('.num1').addEventListener('click', onClickNumber);
+document.querySelector('.num2').addEventListener('click', onClickNumber);
+document.querySelector('.num3').addEventListener('click', onClickNumber);
+document.querySelector('.num4').addEventListener('click', onClickNumber);
+document.querySelector('.num5').addEventListener('click', onClickNumber);
+document.querySelector('.num6').addEventListener('click', onClickNumber);
+document.querySelector('.num7').addEventListener('click', onClickNumber);
+document.querySelector('.num8').addEventListener('click', onClickNumber);
+document.querySelector('.num9').addEventListener('click', onClickNumber);
 
-
-
-document.querySelector('.clear').addEventListener('click', function (){
-
-  str = '';
-  show_screen.innerHTML = str;
-
-})
-
-document.querySelector('.delete').addEventListener('click', function (){
-  str = str.slice(0, -1);
-  show_screen.innerHTML = str;
-})
-
-document.querySelector('.dot').addEventListener('click', function (){
-  if (isNaN(logic()) == false){
-    str = str + '.';
-    show_screen.innerHTML = str;
+const onClickOperator = (op) => () => {
+  if (numOne) {
+    operator = op;
+    $operator.value = op;
+  } else {
+    alert('숫자를 먼저 입력하셈')
   }
+}
+
+document.querySelector('.plus').addEventListener('click', onClickOperator('+'));
+document.querySelector('.minus').addEventListener('click', onClickOperator('-'));
+document.querySelector('.divide').addEventListener('click', onClickOperator('/'));
+document.querySelector('.multiple').addEventListener('click', onClickOperator('*'));
+
+
+document.querySelector('.equal').addEventListener('click', () => {
+  if (numTwo) {
+    switch (operator) {
+      case '+':
+      $result.value = parseInt(numOne) + parseInt(numTwo);
+      break;
+      case '-':
+      $result.value = numOne - numTwo;
+      break;
+      case '*':
+      $result.value = numOne * numTwo;
+      break;
+      case '/':
+      $result.value = numOne / numTwo;
+      break;
+      default:
+      break;
+    }
+  } else {
+    alert('숫자를 먼저 입력하셈');
+  }
+});
+
+document.querySelector('.clear').addEventListener('click', () => {
+  numOne = '';
+  operator = '';
+  numTwo = '';
+  $operator.value = '';
+  $result.value = '';
+});
+
+
+document.querySelector('.delete').addEventListener('click', () => {
+  $result.value = $result.value.slice(0, -1)
 })
-
-
-document.querySelector('.per').addEventListener('click', function (){
-  if (isNaN(logic()) == false){
-  str = str + '%';
-  show_screen.innerHTML = str;
-}})
-
-document.querySelector('.divide').addEventListener('click', function (){
-  if (isNaN(logic()) == false){
-  str = str + '/';
-  show_screen.innerHTML = str;
-}})
-
-document.querySelector('.multiple').addEventListener('click', function (){
-  if (isNaN(logic()) == false){
-  str = str + '*';
-  show_screen.innerHTML = str;
-}})
-
-document.querySelector('.plus').addEventListener('click', function (){
-  if (isNaN(logic()) == false){
-  str = str + '+';
-  show_screen.innerHTML = str;
-}})
-
-document.querySelector('.minus').addEventListener('click', function (){
-  if (isNaN(logic()) == false){
-  str = str + '-';
-  show_screen.innerHTML = str;
-}})
-
-// document.querySelector('.equal').addEventListener('click', function (){
-//   if (isNaN(logic()) == false){
-//   str = str + '=';
-//   document.querySelector('.screen1').innerHTML = str;
-// }})
-
-console.log(document.querySelector('.screen1').value);
-
-// document.querySelector('.equal').addEventListener('click', evaluate)
