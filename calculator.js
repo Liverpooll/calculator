@@ -55,13 +55,44 @@ document.querySelector('.num9').addEventListener('click', onClickNumber);
 //     }
 // }
 const onClickOperator = (oper, event) => {
-  if (result_num == '') {
-    numTwo = '';
-  }
-  else {
+  if (numOne) {
     operator = oper;
     operator_screen.value = oper;
-  }  
+    switch (true) {
+      case '+':
+          result_num = parseInt(numOne) + parseInt(numTwo);
+          result_screen.value = result_num;
+          numOne = result_screen.value;
+          console.log(numOne);
+          numTwo = '';
+          console.log(numTwo);
+          break;
+      case '-':
+          result_screen.value = numOne - numTwo;
+          numOne = result_screen.value;
+          numTwo = '';
+
+          console.log(numOne);
+          break;
+      case '*':
+          result_screen.value = numOne * numTwo;
+          numOne = result_screen.value;
+          numTwo = '';
+
+          break;
+      case '/':
+          result_screen.value = numOne / numTwo;
+          numOne = result_screen.value;
+          numTwo = '';
+
+          break;
+      default:
+          break;
+  }
+
+  } else {
+    alert('숫자 먼저 입력');
+  }
 }
 
 
@@ -87,7 +118,7 @@ document.querySelector('.multiple').onclick = () => {
 
 
 
-document.querySelector('.equal').addEventListener('click', (event) => {
+document.querySelector('.equal').addEventListener('click', () => {
     if (numTwo != '') {
         switch (operator) {
             case '+':
@@ -95,18 +126,27 @@ document.querySelector('.equal').addEventListener('click', (event) => {
                 result_screen.value = result_num;
                 numOne = result_screen.value;
                 console.log(numOne);
+                numTwo = '';
+                console.log(numTwo);
                 break;
             case '-':
                 result_screen.value = numOne - numTwo;
                 numOne = result_screen.value;
+                numTwo = '';
+
+                console.log(numOne);
                 break;
             case '*':
                 result_screen.value = numOne * numTwo;
                 numOne = result_screen.value;
+                numTwo = '';
+
                 break;
             case '/':
                 result_screen.value = numOne / numTwo;
                 numOne = result_screen.value;
+                numTwo = '';
+
                 break;
             default:
                 break;
@@ -114,11 +154,6 @@ document.querySelector('.equal').addEventListener('click', (event) => {
     } else {
         alert('숫자를 먼저 입력하셈');
     }
-
-
-
-
-
 });
 
 
